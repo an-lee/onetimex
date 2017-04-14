@@ -2,11 +2,8 @@
 <%= link_to("修改个人资料", edit_account_user_path(@user), :class => "btn btn-sm btn-default") %>
 </h1>
 <div class="">
-  <% if @user.avatar.present? %>
-    <img src="<%#= current_user.image.mdimage%>" class="img-responsive">
-  <% else %>
-    <%= image_tag avatar_url(@user) %>
-  <% end %>
+
+  <img src= "<%= render_user_avatar(current_user, 90) %>" class="img-responsive">
 </div>
 <br>
 

@@ -2,16 +2,16 @@
 <%= simple_form_for [:account, @user] do |f| %>
 <div>
   <% if @user.avatar.present? %>
-    <img src="<%#= current_user.image.mdimage%>" class="img-responsive">
+    <img src="<%= current_user.avatar.mdavatar %>" class="img-responsive">
   <% else %>
-    <%= image_tag avatar_url(@user) %>
+    <%= image_tag avatar_url(@user, 48) %>
   <% end %>
 </div>
 <div>
-<%= f.input :avatar, :label =>"用户头像（有头像的用户发起的项目会赢得信任感哦）" %>
-<%= f.input :name, :label =>"用户名",:input_html => { class: 'user-name-input-witdth'} %>
-<%= f.input :email, :label =>"邮箱地址",:input_html => { class: 'user-name-input-witdth'}  %>
-<%= link_to("放弃更新", account_users_path, class: "btn btn-sm btn-default" ) %>
-<%= f.submit "提交", class: "btn btn-sm btn-default" %>
+  <%= f.input :avatar, :label =>"用户头像", as: :file %>
+  <%= f.input :name, :label =>"用户名",:input_html => { class: 'user-name-input-witdth'} %>
+  <%= f.input :email, :label =>"邮箱地址",:input_html => { class: 'user-name-input-witdth'}  %>
+  <%= link_to("放弃更新", account_users_path, class: "btn btn-sm btn-default" ) %>
+  <%= f.submit "提交", class: "btn btn-sm btn-default" %>
 </div>
 <% end %>

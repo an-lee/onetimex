@@ -8,9 +8,27 @@ module ApplicationHelper
     end
   end
 
-  def avatar_url(user)
+  def render_user_avatar(user, size)
+    # size = ['mdavatar', 'smavatar', 'nmavatar']
+    if user.avatar.present?
+      # byebug
+      if size == 90
+        user.avatar.mdavatar
+      elsif size == 40
+        user.avatar.smavatar
+      elsif size == 20
+        user.avatar.xsavatar
+      else
+        user.avatar
+      end
+    else
+      avatar_url(user, size)
+    end
+  end
+
+  def avatar_url(user, size)
     gravatar_id = Digest::MD5.hexdigest(user.email.downcase)
-    "http://gravatar.com/avatar/#{gravatar_id}.png"
+    "http://gravatar.com/avatar/#{gravatar_id}.png?s=#{size}&d=retro&r=g"
   end
 
   def resource_name
