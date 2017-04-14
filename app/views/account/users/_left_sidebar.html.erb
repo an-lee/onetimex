@@ -1,0 +1,10 @@
+<div class="sidebar-bg">
+  <h2 class="">
+    个人中心
+  </h2>
+  <h3 class="">
+    <%= link_to("我的信息 >", account_users_path, active: :inclusive) %><br/><br/>
+    <%= link_to("我的收藏 >", "/", active: :inclusive) %><br /><br/>
+    <%= link_to("我的订单 >", account_orders_path, active: :inclusive) %>
+  </h3>
+</div>
