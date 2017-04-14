@@ -5,7 +5,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   mount_uploader :avatar, AvatarUploader
+  
   has_many :orders
+  has_many :comments
+  has_many :posts
+
   def admin?
     is_admin
   end
