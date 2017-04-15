@@ -24,7 +24,7 @@
           <% else %>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <img src= "<%= render_user_avatar(current_user, 20) %>">  <%= username(current_user) %>
+                <img src= "<%= render_user_avatar(current_user, 20) %>">  <%= current_user.display_name %>
                   <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">

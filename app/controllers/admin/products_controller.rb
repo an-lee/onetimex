@@ -14,7 +14,7 @@ class Admin::ProductsController < ApplicationController
   end
 
   def create
-    @product = Product.new(products_params)
+    @product = Product.new(product_params)
     if @product.save
       redirect_to admin_products_path, notice: "成功添加了新商品！"
     end
@@ -24,7 +24,7 @@ class Admin::ProductsController < ApplicationController
   end
 
   def update
-    @product.update(products_params)
+    @product.update(product_params)
     redirect_to admin_products_path, notice: "商品信息已更新！"
   end
 
@@ -35,7 +35,7 @@ class Admin::ProductsController < ApplicationController
 
 private
 
-  def products_params
+  def product_params
     params.require(:product).permit(:title, :description, :quantity, :price, :image)
   end
 

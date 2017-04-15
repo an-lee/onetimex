@@ -1,13 +1,5 @@
 module ApplicationHelper
 
-  def username(user)
-    if user.name.present?
-      user.name
-    else
-      user.name = user.email.split("@").first
-    end
-  end
-
   def render_user_avatar(user, size)
     # size = ['mdavatar', 'smavatar', 'nmavatar']
     if user.avatar.present?

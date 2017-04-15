@@ -24,3 +24,33 @@
     </div>
   </div>
 </div>
+
+  <%= link_to("写评测", new_product_post_path(@product), class: "btn btn-default") %>
+  <hr>
+  <% if @posts.present? %>
+    <% @posts.each do |post| %>
+      <div class="panel panel-default">
+
+        <div class="panel-heading">
+          <img src=" <%= render_user_avatar(post.user, 20) %> " alt="avatar" >
+          <b><%= post.user.name %> 发表《 <%= link_to(post.title, product_post_path(post.product, post)) %>》</b>
+          <span><%= post.created_at.strftime("%d %b. %Y") %></span>
+        </div>
+
+        <div class="panel-body">
+           <p> <%= post.content %> </p>
+           <% if current_user && current_user == post.user %>
+             <%= link_to('Edit', edit_product_post_path(post.product, post), class: "btn btn-default btn-xs") %>
+             <%= link_to('Delete', product_post_path(post.product, post), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-default btn-xs") %>
+           <% end %>
+        </div>
+      </div>
+    <% end %><!-- @posts.each do -->
+
+  <% else %><!-- @posts don't present -->
+    <p>暂无评测，快来添加吧
+      <%= link_to new_product_post_path(@product) do %>
+        <i class="fa fa-edit"></i>
+      <% end %>
+    </p>
+  <% end %>

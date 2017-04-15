@@ -1,0 +1,57 @@
+
+<div class="panel panel-default">
+
+  <div class="panel-heading">
+    <img src=" <%= render_user_avatar(@post.user, 20) %> " alt="avatar" >
+    <%= @post.user.display_name %> 发表《 <%= link_to(@post.title, product_post_path(@product, @post)) %>》,
+     <span><%= @post.created_at.strftime("%d %b. %Y") %></span>
+  </div>
+
+
+
+  <div class="panel-body">
+   <p><%#= markdown(post.body) %></p>
+   <p> <%= @post.content %> </p>
+
+  <% if current_user && current_user == @post.user %>
+    <%= link_to('Edit', edit_product_post_path(@product, @post), class: "btn btn-default btn-xs") %>
+    <%= link_to('Delete', product_post_path(@product, @post), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-default btn-xs") %>
+  <% end %>
+  </div>
+
+</div>
+
+<div>
+  <%= simple_form_for [@product, @post, @comment] do |f| %>
+    <div class="form-group">
+      <%= f.input :content, label: "发表评论", input_html: { class: "form-control"} %>
+    </div>
+    <div class="form-group">
+      <%= f.submit "Submit", disable_with: "Submiting...", class: "btn btn-primary"%>
+    </div>
+  <% end %>
+</div>
+
+
+<div>
+  <% if @comments.present? %>
+    <% @comments.each do |comment| %>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <img src=" <%= render_user_avatar(comment.user, 20) %> " alt="avatar" >
+          <%= comment.user.display_name %>
+        </div>
+        <div class="panel-body">
+          <%= comment.content %>
+         <% if current_user && comment.user == current_user %>
+           <p class="text-right">
+             <%= link_to "Delete", product_post_comment_path(@product, @post, comment), :method => :delete, :class => "btn btn-danger" %>
+           </p>
+         <% end %>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    还有没有评论，赶紧抢沙发。
+  <% end %>
+</div>

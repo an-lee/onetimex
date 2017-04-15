@@ -5,8 +5,8 @@ Rails.application.routes.draw do
 
   namespace :account do
     resources :orders
-
-
+    resources :posts
+    resources :comments
     resources :users do
       member do
         get :change_password
@@ -28,6 +28,10 @@ Rails.application.routes.draw do
   end
 
   resources :products do
+    resources :comments
+    resources :posts do
+      resources :comments
+    end
     member do
       post :add_to_cart
     end

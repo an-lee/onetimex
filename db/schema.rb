@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170414223331) do
+ActiveRecord::Schema.define(version: 20170415012741) do
 
   create_table "cart_items", force: :cascade do |t|
     t.integer  "cart_id"
@@ -57,8 +57,9 @@ ActiveRecord::Schema.define(version: 20170414223331) do
     t.text     "content"
     t.integer  "user_id"
     t.integer  "product_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "comments_count", default: 0
     t.index ["product_id"], name: "index_posts_on_product_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
@@ -77,9 +78,11 @@ ActiveRecord::Schema.define(version: 20170414223331) do
     t.text     "description"
     t.integer  "price"
     t.integer  "quantity"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.string   "image"
+    t.integer  "posts_count",    default: 0
+    t.integer  "comments_count", default: 0
   end
 
   create_table "users", force: :cascade do |t|
@@ -98,6 +101,8 @@ ActiveRecord::Schema.define(version: 20170414223331) do
     t.boolean  "is_admin",               default: false
     t.string   "name"
     t.string   "avatar"
+    t.integer  "posts_count",            default: 0
+    t.integer  "comments_count",         default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

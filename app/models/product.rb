@@ -4,4 +4,5 @@ class Product < ApplicationRecord
 
   has_many :cart_items
   has_many :comments, as: :commentable
+  has_many :posts
 end
