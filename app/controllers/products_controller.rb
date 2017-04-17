@@ -1,13 +1,13 @@
 class ProductsController < ApplicationController
-  
+
   def index
     @products = Product.all
   end
 
   def show
     @product = Product.find(params[:id])
-    @posts = @product.posts
-    @comments = @product.comments
+    @posts = @product.posts.order("id DESC").all
+    @comments = @product.comments.all
   end
 
   def add_to_cart

@@ -1,0 +1,1 @@
+$("#post-<%= @post.id %>").replaceWith("<%=j render :partial => "post_edit", :locals => { :product => @product, :post => @post } %>")

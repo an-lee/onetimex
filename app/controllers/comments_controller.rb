@@ -6,7 +6,12 @@ class CommentsController < ApplicationController
     @comment = @post.comments.new(comment_params)
     @comment.user = current_user
     @comment.save
-    redirect_to product_post_path(@product, @post)
+    # redirect_to product_post_path(@product, @post)
+  end
+
+  def destroy
+    @comment = current_user.comments.find(params[:id])
+    @comment.destroy
   end
 
   private

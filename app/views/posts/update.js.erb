@@ -1,0 +1,7 @@
+<% if @post.valid? %>
+  $("#post-<%= @post.id %>").replaceWith("<%=j render :partial => "post_item", :locals => { :post => @post } %>")
+  // $("#post_title").val("");
+  // $("#post_content").val("");
+<% else %>
+  alert("发表评测失败")
+<% end %>

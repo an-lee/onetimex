@@ -1,0 +1,6 @@
+<% if @comment.valid? %>
+  $("#comment-list").prepend("<%=j render :partial => "comment_item", :locals => { :comment => @comment } %>")
+  $("#comment_content").val("");
+<% else %>
+  alert("发表评论失败")
+<% end %>

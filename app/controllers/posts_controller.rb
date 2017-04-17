@@ -10,13 +10,11 @@ class PostsController < ApplicationController
   def create
     @post = @product.posts.new(post_params)
     @post.user = current_user
-    if @post.save
-      redirect_to product_post_path(@product)
-    end
+    @post.save
   end
 
   def show
-    @comments = @post.comments.all
+    @comments = @post.comments.all.order("id DESC")
     @comment = @post.comments.new
   end
 
@@ -24,11 +22,12 @@ class PostsController < ApplicationController
   end
 
   def update
-    if @post.update(post_params)
-      redirect_to product_post_path(@product)
-    else
-      render :edit
-    end
+    @post.update(post_params)
+  end
+
+  def destroy
+    @post = current_user.posts.find(params[:id])
+    @post.destroy
   end
 
   private

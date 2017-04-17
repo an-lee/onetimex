@@ -1,0 +1,13 @@
+<div id="post-<%= post.id %>">
+  <%= simple_form_for [@product, @post], remote: true do |f| %>
+    <div class="form-group">
+      <%= f.input :title, label: "题目", input_html: { class: "form-control"} %>
+    </div>
+    <div class="form-group">
+      <%= f.input :content, label: "内容", input_html: { class: "form-control"} %>
+    </div>
+    <div class="form-group">
+      <%= f.submit "更新评测", method: :patch,  disable_with: "Submiting...", class: "btn btn-default"%>
+    </div>
+  <% end %>
+</div>

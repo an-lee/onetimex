@@ -1,0 +1,14 @@
+<div id="add-post">
+  <%= simple_form_for [@product, @post], remote: true do |f| %>
+    <div class="form-group">
+      <%= f.input :title, label: "题目", input_html: { class: "form-control"} %>
+    </div>
+    <div class="form-group">
+      <%= f.input :content, label: "内容", input_html: { class: "form-control"} %>
+    </div>
+    <div class="form-group">
+      <%= f.submit "发布评测", disable_with: "Submiting...", class: "btn btn-default"%>
+      <hr>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,8 @@
+<% if @post.valid? %>
+  $("#post-list").prepend("<%=j render :partial => "post_item", :locals => { :post => @post } %>")
+  $("#add-post").replaceWith("<%=j link_to "新增评测", new_product_post_path(@product), class: "btn btn-success", id: "add-post", remote: true %><hr>")
+  $("#post_title").val("");
+  $("#post_content").val("");
+<% else %>
+  alert("发表评测失败")
+<% end %>
