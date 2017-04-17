@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update]
-  before_action :find_product, only: [:new, :create, :show, :destroy, :edit, :update, :like, :unlike, :star, :unstar]
-  before_action :find_post, only: [:edit, :destroy, :update, :show, :like, :unlike, :star, :unstar]
+  before_action :find_product, only: [:new, :create, :destroy, :edit, :update, :like, :unlike, :star, :unstar]
+  before_action :find_post, only: [:edit, :destroy, :update, :like, :unlike, :star, :unstar]
 
   def new
     @post = @product.posts.new
@@ -14,6 +14,8 @@ class PostsController < ApplicationController
   end
 
   def show
+    @post = Post.find(params[:id])
+    @product = @post.product
     @comments = @post.comments.all.order("id DESC")
     @comment = @post.comments.new
   end

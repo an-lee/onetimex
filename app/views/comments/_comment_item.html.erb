@@ -3,10 +3,16 @@
     <img src=" <%= render_user_avatar(comment.user, 20) %> " alt="avatar" >
     <%= comment.user.display_name %> 在 <%= comment.created_at %> 评论说：
     <% if current_user && comment.user == current_user %>
-      <%= link_to "Delete", product_post_comment_path(@product, @post, comment), :remote => true, :method => :delete, data: {confirm: "您确定要删除该文章吗？"}, :class => "btn btn-danger btn-xs pull-right" %>
+      <%= link_to "Delete", post_comment_path( @post, comment ), :remote => true, :method => :delete, data: {confirm: "您确定要删除该文章吗？"}, :class => "btn btn-danger btn-xs pull-right" %>
     <% end %>
   </div>
   <div class="panel-body">
-    <%= render_comment_content(comment.content) %>
+    <span id="comment-thumbsup-<%= comment.id %>" class="label label-success">
+      <%= comment.likes_count %> <i class="fa fa-thumbs-up"></i>
+    </span>
+    <div class="">
+      <%= render_comment_content(comment.content) %>
+    </div>
+    <%= render :partial => "comments/comment_like", locals: { :comment => comment } %>
   </div>
 </div>

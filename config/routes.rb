@@ -30,7 +30,6 @@ Rails.application.routes.draw do
   resources :products do
     resources :comments
     resources :posts do
-      resources :comments
       member do
         post :like
         post :unlike
@@ -40,6 +39,15 @@ Rails.application.routes.draw do
     end
     member do
       post :add_to_cart
+    end
+  end
+
+  resources :posts do
+    resources :comments do
+      member do
+        post :like
+        post :unlike
+      end
     end
   end
 
