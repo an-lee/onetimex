@@ -1,0 +1,2 @@
+$("#cart-number").html('<span id="cart-number"> <%= current_cart.products.count %></span>');
+$("#flash-show").prepend('<%=j render :partial => "common/flashes" %>');

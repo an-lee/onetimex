@@ -7,8 +7,8 @@ class User < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
 
   has_many :orders
-  has_many :comments
-  has_many :posts
+  has_many :comments, dependent: :destroy
+  has_many :posts, dependent: :destroy
 
   def admin?
     is_admin
