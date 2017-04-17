@@ -1,0 +1,11 @@
+<div id="comment-like-<%= comment.id %>">
+  <% if current_user.find_action(:like, target: comment).present? %>
+    <%= link_to unlike_post_comment_path(@post, comment), method: :post, remote: true, class: "btn btn-default btn-xs pull-right", style: "margin-left:0.25em;margin-right:0.25em;" do %>
+      <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+    <% end %>
+  <% else %>
+    <%= link_to like_post_comment_path(@post, comment), method: :post, remote: true, class: "btn btn-default btn-xs pull-right", style: "margin-left:0.25em;margin-right:0.25em;" do %>
+      <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+    <% end %>
+  <% end %>
+</div>
