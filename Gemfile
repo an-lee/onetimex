@@ -1,4 +1,5 @@
-source 'https://rubygems.org'
+# source 'https://rubygems.org'
+source 'https://gems.ruby-china.org'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
@@ -43,6 +44,7 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'faker'
 gem 'aasm'
+gem 'action-store'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

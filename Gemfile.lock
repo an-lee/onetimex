@@ -1,7 +1,9 @@
 GEM
-  remote: https://rubygems.org/
+  remote: https://gems.ruby-china.org/
   specs:
     aasm (4.11.1)
+    action-store (0.3.0)
+      rails (>= 4.2.0, < 5.1)
     actioncable (5.0.2)
       actionpack (= 5.0.2)
       nio4r (>= 1.2, < 3.0)
@@ -207,6 +209,7 @@ PLATFORMS
 
 DEPENDENCIES
   aasm
+  action-store
   better_errors
   binding_of_caller
   bootstrap-sass
