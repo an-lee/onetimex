@@ -1,0 +1,3 @@
+str = "<%=j render :partial => "posts/post_star", :locals => { :post => @post } %>";
+$("#post-star-<%= @post.id %>").html(str);
+$("#post-heart-<%= @post.id %>").html('<%= @post.stars_count %> <i class="fa fa-heart"></i>');

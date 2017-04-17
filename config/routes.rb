@@ -31,6 +31,12 @@ Rails.application.routes.draw do
     resources :comments
     resources :posts do
       resources :comments
+      member do
+        post :like
+        post :unlike
+        post :star
+        post :unstar
+      end
     end
     member do
       post :add_to_cart

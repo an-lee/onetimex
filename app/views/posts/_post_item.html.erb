@@ -5,12 +5,29 @@
       <%= post.user.display_name %> 对商品 「<%= @product.title %>」 发表了评测《 <%= link_to(post.title, product_post_path(@product, post)) %>》,
     <span><%= post.created_at.strftime("%d %b. %Y") %></span>
     <% if current_user && current_user == post.user %>
-      <%= link_to('Edit', edit_product_post_path(post.product, post), class: "btn btn-warning btn-xs pull-right", remote: true) %>
-      <%= link_to('Delete', product_post_path(@product, post), method: :delete, data: { confirm: "您确定要删除该文章吗？" }, class: "btn btn-danger btn-xs pull-right", remote: true ) %>
+      <%= link_to edit_product_post_path(post.product, post), class: "btn btn-warning btn-xs pull-right", style: "margin-left:0.25em;margin-right:0.25em;", remote: true do %>
+        <i class="fa fa-edit"></i>
+      <% end %>
+
+      <%= link_to product_post_path(@product, post), method: :delete, data: { confirm: "您确定要删除该文章吗？" }, class: "btn btn-danger btn-xs pull-right", style: "margin-left:0.25em;margin-right:0.25em;", remote: true do %>
+        <i class="fa fa-trash"></i>
+      <% end %>
     <% end %>
   </div>
 
   <div class="panel-body">
-     <%= render_post_content(post.content) %>
+    <span id="post-thumbsup-<%= post.id %>" class="label label-success"> <%= post.likes_count %> <i class="fa fa-thumbs-up"></i></span>
+
+    <span id="post-heart-<%= post.id %>" class="label label-success"> <%= post.stars_count %> <i class="fa fa-heart"></i></span>
+
+    <%= render_post_content(post.content) %>
+
+    <%= link_to("评论", product_post_path(@product, post), class: "btn btn-primary btn-xs pull-right", style: "margin-left:0.5em;margin-right:0.5em;" ) %>
+
+    <%= render :partial => "posts/post_like", locals: { :post => post } %>
+    <%= render :partial => "posts/post_star", locals: { :post => post } %>
+
+
+
   </div>
 </div>

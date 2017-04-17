@@ -34,9 +34,8 @@
   <% if @posts.present? %>
     <% @posts.each do |post| %>
       <%= render :partial => "posts/post_item", locals: { :post => post }%>
-    <% end %><!-- @posts.each do -->
-
-  <% else %><!-- @posts don't present -->
+    <% end %>
+  <% else %>
     <p>暂无评测，快来添加吧
       <%= link_to new_product_post_path(@product) do %>
         <i class="fa fa-edit"></i>
