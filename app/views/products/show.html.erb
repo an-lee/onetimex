@@ -6,8 +6,12 @@
       <%= image_tag("http://placehold.it/400x400&text=No Pic", class: "thumbnail") %>
     <% end %>
   </div>
-  <div class="col-md-6">
+  <div class="col-md-6 panel-body">
     <h2> <%= @product.title %> </h2>
+
+    <span class="average-score"><%= @product.average_score %></span>
+    <div class="raty" data-score="<%= @product.find_score(current_user).try(:score) || 0 %>" data-score-url="<%= rate_product_path(@product) %>"></div>
+
     <div style="height:100px;">
       <p>
         <%= @product.description %>
@@ -25,10 +29,17 @@
   </div>
 </div>
 
-<div id="add-post">
-  <%= link_to "新增评测", new_product_post_path(@product), class: "btn btn-success",  remote: true %>
-  <hr>
-</div>
+
+
+<% if current_user %>
+  <div id="add-post">
+    <%= link_to "新增评测", new_product_post_path(@product), class: "btn btn-success",  remote: true %>
+  </div>
+<% else %>
+  <%= link_to "登录后添加评测", new_user_session_path , class: "btn btn-success" %>
+<% end %>
+
+<hr>
 
 <div id="post-list">
   <% if @posts.present? %>
@@ -43,3 +54,45 @@
     </p>
   <% end %>
 </div>
+
+
+<script>
+  $(".raty").raty({
+   path: '/images/',
+   score: function() { return $(this).data('score'); },
+   click: function(score) {
+     var that = this;
+     $.ajax({
+       url: $(this).data("score-url"),
+       method: "POST",
+       data: { score: score },
+       dataType: "json",
+       success: function(data){
+         $(that).closest(".panel-body").find(".average-score").html( data["average_score"] );
+       }
+     })
+   }
+  });
+
+
+  // 记下目前画面最小的贴文 ID
+  var current_post_id = <%= @posts.last.id %>;
+  var product_id = <%= @product.id %>
+
+  // 当捲轴动的时候，会触发这个事件
+  $(window).scroll(function(){
+    // 当捲到最下面的时候
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+      var url = "/products/" + product_id + "?max_id=" + current_post_id;
+      if (url) {
+        $.ajax({
+          method: "GET",
+          url: url,
+          dataType: "script"
+        })
+      } else {
+        console.log("data ended")
+      }
+    }
+  })
+</script>

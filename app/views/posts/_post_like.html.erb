@@ -1,11 +1,13 @@
 <div id="post-like-<%= post.id %>">
-  <% if current_user.find_action(:like, target: post).present? %>
-    <%= link_to unlike_product_post_path(@product, post), method: :post, remote: true, class: "btn btn-default btn-xs pull-right", style: "margin-left:0.25em;margin-right:0.25em;" do %>
-      <i class="fa fa-thumbs-up" aria-hidden="true"></i>
-    <% end %>
-  <% else %>
-    <%= link_to like_product_post_path(@product, post), method: :post, remote: true, class: "btn btn-default btn-xs pull-right", style: "margin-left:0.25em;margin-right:0.25em;" do %>
-      <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+  <% if current_user %>
+    <% if current_user.find_action(:like, target: post).present? %>
+      <%= link_to unlike_product_post_path(@product, post), method: :post, remote: true, class: "btn btn-default btn-xs pull-right", style: "margin-left:0.25em;margin-right:0.25em;" do %>
+        <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+      <% end %>
+    <% else %>
+      <%= link_to like_product_post_path(@product, post), method: :post, remote: true, class: "btn btn-default btn-xs pull-right", style: "margin-left:0.25em;margin-right:0.25em;" do %>
+        <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+      <% end %>
     <% end %>
   <% end %>
 </div>

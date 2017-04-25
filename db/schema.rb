@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170417123128) do
+ActiveRecord::Schema.define(version: 20170425035453) do
 
   create_table "actions", force: :cascade do |t|
     t.string   "action_type",   null: false
@@ -89,6 +89,16 @@ ActiveRecord::Schema.define(version: 20170417123128) do
     t.datetime "updated_at",    null: false
   end
 
+  create_table "product_scores", force: :cascade do |t|
+    t.integer  "score"
+    t.integer  "product_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_product_scores_on_product_id"
+    t.index ["user_id"], name: "index_product_scores_on_user_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
@@ -99,6 +109,8 @@ ActiveRecord::Schema.define(version: 20170417123128) do
     t.string   "image"
     t.integer  "posts_count",    default: 0
     t.integer  "comments_count", default: 0
+    t.string   "friendly_id"
+    t.index ["friendly_id"], name: "index_products_on_friendly_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|

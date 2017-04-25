@@ -42,7 +42,6 @@ gem 'simple_form'
 gem 'font-awesome-rails'
 gem 'carrierwave'
 gem 'mini_magick'
-gem 'faker'
 gem 'aasm'
 gem 'action-store'
 
@@ -62,6 +61,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'meta_request'
+  gem 'faker', '~> 1.7.3'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
