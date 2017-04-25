@@ -3,7 +3,7 @@
     <img src=" <%= render_user_avatar(post.user, 20) %> " alt="avatar" >
     <b>
       <%= post.user.display_name %> 对商品 「<%= link_to(@product.title, product_path(@product)) %>」 发表了评测《 <%= post.title %>》,
-    <span><%= post.created_at.strftime("%d %b. %Y") %></span>
+    <span><%= post.created_at.to_s(:short) %></span>
     <% if current_user && current_user == post.user %>
       <%= link_to edit_product_post_path(post.product, post), class: "btn btn-warning btn-xs pull-right", style: "margin-left:0.25em;margin-right:0.25em;", remote: true do %>
         <i class="fa fa-edit"></i>
