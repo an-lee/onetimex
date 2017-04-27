@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170425035453) do
+ActiveRecord::Schema.define(version: 20170425070833) do
 
   create_table "actions", force: :cascade do |t|
     t.string   "action_type",   null: false
@@ -111,6 +111,20 @@ ActiveRecord::Schema.define(version: 20170425035453) do
     t.integer  "comments_count", default: 0
     t.string   "friendly_id"
     t.index ["friendly_id"], name: "index_products_on_friendly_id", unique: true
+  end
+
+  create_table "profiles", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "legal_name"
+    t.date     "birthday"
+    t.string   "location"
+    t.string   "education"
+    t.string   "occupation"
+    t.text     "bio"
+    t.text     "specialty"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
