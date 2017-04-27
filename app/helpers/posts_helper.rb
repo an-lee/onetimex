@@ -1,7 +1,7 @@
 module PostsHelper
 
   def render_post_content(content)
-    simple_format(content)
+    sanitize(content)
   end
 
 end
